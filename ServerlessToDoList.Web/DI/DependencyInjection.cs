@@ -23,5 +23,6 @@ public static class DependencyInjection
     private static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IToDoListItemRepository, ToDoListItemRepository>();
+        services.AddScoped<IToDoListRepository, ToDoListRepository>();
     }
 }
