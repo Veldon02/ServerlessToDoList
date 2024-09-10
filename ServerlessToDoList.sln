@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerlessToDoList.Web", "ServerlessToDoList.Web\ServerlessToDoList.Web.csproj", "{71BE94A6-7E67-48E5-9FE6-08A053875768}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71BE94A6-7E67-48E5-9FE6-08A053875768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71BE94A6-7E67-48E5-9FE6-08A053875768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71BE94A6-7E67-48E5-9FE6-08A053875768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71BE94A6-7E67-48E5-9FE6-08A053875768}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {632AD845-BC7F-46BB-AD1C-7BAC959A2429}
+	EndGlobalSection
+EndGlobal
