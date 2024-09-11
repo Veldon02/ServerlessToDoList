@@ -1,4 +1,4 @@
-﻿using ServerlessToDoList.Web.Entities;
+using ServerlessToDoList.Web.Entities;
 
 namespace ServerlessToDoList.Web.Interfaces.Repositories;
 
@@ -11,7 +11,7 @@ public interface IBaseRepository<TEntity, in TId>
 
     Task<TEntity> AddAsync(TEntity entity);
 
-    void Update(TEntity entity);
+    Task UpdateAsync(TEntity entity);
 
-    void Delete(TEntity entity);
+    Task DeleteAsync(TEntity entity);
 }

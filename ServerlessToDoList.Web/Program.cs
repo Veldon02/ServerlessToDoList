@@ -4,6 +4,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ServerlessToDoList.Web.DI;
+using ServerlessToDoList.Web.Mappings;
 using ServerlessToDoList.Web.Middlewares;
 
 var host = new HostBuilder()
@@ -14,6 +15,7 @@ var host = new HostBuilder()
         services.ConfigureFunctionsApplicationInsights();
 
         services.AddDependencyInjections();
+        services.AddAutoMapper(typeof(AutoMapperProfile));
 
         services.Configure<JsonOptions>(options =>
         {

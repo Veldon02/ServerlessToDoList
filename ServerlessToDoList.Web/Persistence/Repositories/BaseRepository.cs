@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ServerlessToDoList.Web.Entities;
 using ServerlessToDoList.Web.Interfaces.Repositories;
 
@@ -30,16 +30,22 @@ public class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
     {
         await _dbSet.AddAsync(entity);
 
+        await _context.SaveChangesAsync();
+
         return entity;
     }
 
-    public void Update(TEntity entity)
+    public async Task UpdateAsync(TEntity entity)
     {
         _dbSet.Update(entity);
+
+        await _context.SaveChangesAsync();
     }
 
-    public void Delete(TEntity entity)
+    public async Task DeleteAsync(TEntity entity)
     {
         _dbSet.Remove(entity);
+
+        await _context.SaveChangesAsync();
     }
 }

@@ -1,4 +1,4 @@
-﻿using ServerlessToDoList.Web.Enums;
+using ServerlessToDoList.Web.Enums;
 
 namespace ServerlessToDoList.Web.ApiModels.ToDoListItem;
 

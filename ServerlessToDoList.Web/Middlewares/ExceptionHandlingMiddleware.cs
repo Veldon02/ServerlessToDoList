@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.Functions.Worker.Middleware;
@@ -21,7 +21,7 @@ public class ExceptionHandlingMiddleware : IFunctionsWorkerMiddleware
         }
         catch (Exception e)
         {
-            await ProcessException(context, HttpStatusCode.InternalServerError, "An unexpected error has occurred");
+            await ProcessException(context, HttpStatusCode.InternalServerError, e.Message ?? "An unexpected error has occurred");
         }
     }
 
