@@ -7,4 +7,6 @@ public class ToDoListItem : BaseEntity<Guid>
     public string Item { get; set; }
 
     public ListItemStatus Status { get; set; }
+
+    public ToDoList ToDoList { get; set; }
 }

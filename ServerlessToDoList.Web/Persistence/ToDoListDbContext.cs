@@ -13,4 +13,11 @@ public class ToDoListDbContext : DbContext
     public DbSet<ToDoList> ToDoLists { get; set; }
 
     public DbSet<ToDoListItem> ToDoListItems { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ToDoListDbContext).Assembly);
+    }
 }

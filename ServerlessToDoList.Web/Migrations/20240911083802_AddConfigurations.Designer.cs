@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServerlessToDoList.Web.Persistence;
 
@@ -11,9 +12,11 @@ using ServerlessToDoList.Web.Persistence;
 namespace ServerlessToDoList.Web.Migrations
 {
     [DbContext(typeof(ToDoListDbContext))]
-    partial class ToDoListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240911083802_AddConfigurations")]
+    partial class AddConfigurations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,23 +32,18 @@ namespace ServerlessToDoList.Web.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("ToDoList", (string)null);
+                    b.ToTable("ToDoLists");
                 });
 
             modelBuilder.Entity("ServerlessToDoList.Web.Entities.ToDoListItem", b =>
@@ -55,16 +53,14 @@ namespace ServerlessToDoList.Web.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Item")
                         .IsRequired()
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("ToDoListId")
                         .HasColumnType("uniqueidentifier");
@@ -76,7 +72,7 @@ namespace ServerlessToDoList.Web.Migrations
 
                     b.HasIndex("ToDoListId");
 
-                    b.ToTable("ToDoListItem", (string)null);
+                    b.ToTable("ToDoListItems");
                 });
 
             modelBuilder.Entity("ServerlessToDoList.Web.Entities.ToDoListItem", b =>
