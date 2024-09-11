@@ -8,10 +8,12 @@ namespace ServerlessToDoList.Web.Services;
 public class ToDoListService : IToDoListService
 {
     private readonly IToDoListRepository _toDoListRepository;
+    private readonly IToDoListItemRepository _toDoListItemRepository;
 
-    public ToDoListService(IToDoListRepository toDoListRepository)
+    public ToDoListService(IToDoListRepository toDoListRepository, IToDoListItemRepository toDoListItemRepository)
     {
         _toDoListRepository = toDoListRepository;
+        _toDoListItemRepository = toDoListItemRepository;
     }
 
     public async Task<IEnumerable<ToDoList>> GetAllAsync()
@@ -25,5 +27,13 @@ public class ToDoListService : IToDoListService
                      ?? throw new EntityNotFoundException($"ToDoList with id {id} is not found");
 
         return result;
+    }
+
+    public async Task<IEnumerable<ToDoListItem>> GetListItemsAsync(Guid id)
+    {
+        var list = await _toDoListRepository.GetByIdAsync(id)
+                     ?? throw new EntityNotFoundException($"ToDoList with id {id} is not found");
+
+        return await _toDoListItemRepository.GetByListAsync(list.Id);
     }
 }

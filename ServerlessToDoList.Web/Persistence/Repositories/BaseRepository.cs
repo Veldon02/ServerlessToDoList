@@ -8,7 +8,7 @@ public class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
     where TEntity : BaseEntity<TId>
 {
     private readonly ToDoListDbContext _context;
-    private readonly DbSet<TEntity> _dbSet;
+    protected readonly DbSet<TEntity> _dbSet;
 
     public BaseRepository(ToDoListDbContext context)
     {
@@ -18,7 +18,7 @@ public class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
 
     public async Task<TEntity?> GetByIdAsync(TId id)
     {
-        return await _dbSet.FirstOrDefaultAsync();
+        return await _dbSet.FindAsync(id);
     }
 
     public async Task<IEnumerable<TEntity>> GetAllAsync()
