@@ -33,7 +33,7 @@ public class ExceptionHandlingMiddleware : IFunctionsWorkerMiddleware
         var error = new ErrorResponse
         {
             StatusCode = statusCode,
-            ErrorMessage = message,
+            ErrorMessage = message
         };
 
         await response.WriteAsJsonAsync(error, statusCode);

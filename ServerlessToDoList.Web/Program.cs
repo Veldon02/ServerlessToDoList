@@ -5,10 +5,7 @@ using ServerlessToDoList.Web.DI;
 using ServerlessToDoList.Web.Middlewares;
 
 var host = new HostBuilder()
-    .ConfigureFunctionsWebApplication(builder =>
-    {
-        builder.UseMiddleware<ExceptionHandlingMiddleware>();
-    })
+    .ConfigureFunctionsWebApplication(builder => { builder.UseMiddleware<ExceptionHandlingMiddleware>(); })
     .ConfigureServices(services =>
     {
         services.AddApplicationInsightsTelemetryWorkerService();

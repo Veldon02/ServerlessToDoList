@@ -16,7 +16,8 @@ public class ToDoListFunction
 
     [Function("GetAll")]
     public async Task<ActionResult> GetAll(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "todo-list")] HttpRequest req)
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "todo-list")]
+        HttpRequest req)
     {
         var result = await _toDoListService.GetAllAsync();
         return new OkObjectResult(result);
@@ -24,7 +25,8 @@ public class ToDoListFunction
 
     [Function("GetById")]
     public async Task<ActionResult> GetById(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "todo-list/{id}")] HttpRequest req, Guid id)
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "todo-list/{id}")]
+        HttpRequest req, Guid id)
     {
         var result = await _toDoListService.GetByIdAsync(id);
         return new OkObjectResult(result);
