@@ -10,7 +10,15 @@ namespace ServerlessToDoList.Web.DI;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddPersistence(this IServiceCollection services)
+    public static IServiceCollection AddDependencyInjections(this IServiceCollection services)
+    {
+        services.AddServices();
+        services.AddPersistence();
+
+        return services;
+    }
+
+    private static void AddPersistence(this IServiceCollection services)
     {
         services.AddDbContext<ToDoListDbContext>(options =>
         {
@@ -18,9 +26,6 @@ public static class DependencyInjection
         });
 
         services.AddRepositories();
-        services.AddServices();
-
-        return services;
     }
 
     private static void AddRepositories(this IServiceCollection services)

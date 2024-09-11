@@ -13,7 +13,7 @@ var host = new HostBuilder()
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
 
-        services.AddPersistence();
+        services.AddDependencyInjections();
 
         services.Configure<JsonOptions>(options =>
         {
