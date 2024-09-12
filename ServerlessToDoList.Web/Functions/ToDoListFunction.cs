@@ -84,6 +84,40 @@ public class ToDoListFunction
         return new OkResult();
     }
 
+    [Function("AddItemToList")]
+    public async Task<ActionResult> AddItemToList(
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "todo-list/{id}/items")]
+        HttpRequest req, Guid id)
+    {
+        var request = await ParseBody<ToDoListItemRequest>(req.Body);
+
+        var result = await _toDoListService.AddItemToListAsync(id, request);
+
+        return new OkObjectResult(_mapper.Map<ToDoListItemResponse>(result));
+    }
+
+    [Function("RemoveItemFromList")]
+    public async Task<ActionResult> RemoveItemFromList(
+        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "todo-list/{listId}/items/{itemId}")]
+        HttpRequest req, Guid listId, Guid itemId)
+    {
+        await _toDoListService.RemoveItemFromListAsync(listId, itemId);
+
+        return new OkResult();
+    }
+
+    [Function("UpdateListItem")]
+    public async Task<ActionResult> UpdateListItem(
+        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "todo-list/{listId}/items/{itemId}")]
+        HttpRequest req, Guid listId, Guid itemId)
+    {
+        var request = await ParseBody<ToDoListItemRequest>(req.Body);
+
+        await _toDoListService.UpdateListItemAsync(listId, itemId, request);
+
+        return new OkResult();
+    }
+
     private async Task<T> ParseBody<T>(Stream body)
     {
         var request = await new StreamReader(body).ReadToEndAsync();

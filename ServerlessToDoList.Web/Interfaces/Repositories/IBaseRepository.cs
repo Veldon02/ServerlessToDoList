@@ -7,6 +7,8 @@ public interface IBaseRepository<TEntity, in TId>
 {
     Task<TEntity?> GetByIdAsync(TId id);
 
+    Task<TEntity> GetByIdOrThrowAsync(TId id);
+
     Task<IEnumerable<TEntity>> GetAllAsync();
 
     Task<TEntity> AddAsync(TEntity entity);

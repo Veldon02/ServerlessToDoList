@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ServerlessToDoList.Web.Entities;
+using ServerlessToDoList.Web.Exceptions;
 using ServerlessToDoList.Web.Interfaces.Repositories;
 
 namespace ServerlessToDoList.Web.Persistence.Repositories;
@@ -19,6 +20,12 @@ public class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
     public async Task<TEntity?> GetByIdAsync(TId id)
     {
         return await _dbSet.FindAsync(id);
+    }
+
+    public async Task<TEntity> GetByIdOrThrowAsync(TId id)
+    {
+        return await GetByIdAsync(id)
+               ?? throw new EntityNotFoundException($"{typeof(TEntity).Name} with id {id} is not found");
     }
 
     public async Task<IEnumerable<TEntity>> GetAllAsync()
