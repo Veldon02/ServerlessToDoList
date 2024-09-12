@@ -23,4 +23,6 @@ public interface IToDoListService
     public Task RemoveItemFromListAsync(Guid listId, Guid itemId);
 
     public Task UpdateListItemAsync(Guid listId, Guid itemId, ToDoListItemRequest request);
+
+    public Task UpdateListItemStatusAsync(Guid listId, Guid itemId, ToDoListItemUpdateStatusRequest request);
 }

@@ -118,6 +118,18 @@ public class ToDoListFunction
         return new OkResult();
     }
 
+    [Function("UpdateListItemStatus")]
+    public async Task<ActionResult> UpdateListItemStatus(
+        [HttpTrigger(AuthorizationLevel.Function, "patch", Route = "todo-list/{listId}/items/{itemId}/status")]
+        HttpRequest req, Guid listId, Guid itemId)
+    {
+        var request = await ParseBody<ToDoListItemUpdateStatusRequest>(req.Body);
+
+        await _toDoListService.UpdateListItemStatusAsync(listId, itemId, request);
+
+        return new OkResult();
+    }
+
     private async Task<T> ParseBody<T>(Stream body)
     {
         var request = await new StreamReader(body).ReadToEndAsync();

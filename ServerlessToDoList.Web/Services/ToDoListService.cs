@@ -89,4 +89,15 @@ public class ToDoListService : IToDoListService
 
         await _toDoListItemRepository.UpdateAsync(item);
     }
+
+    public async Task UpdateListItemStatusAsync(Guid listId, Guid itemId, ToDoListItemUpdateStatusRequest request)
+    {
+        _ = await _toDoListRepository.GetByIdOrThrowAsync(listId);
+
+        var item = await _toDoListItemRepository.GetByIdOrThrowAsync(itemId);
+
+        item.Status = request.Status;
+
+        await _toDoListItemRepository.UpdateAsync(item);
+    }
 }
